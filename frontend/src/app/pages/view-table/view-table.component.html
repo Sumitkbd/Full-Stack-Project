@@ -1,0 +1,42 @@
+
+<div class="container-sm">
+    <div id="c3">
+      <h4>USER LIST</h4>
+    </div>
+    <!-- Search Bar -->
+    <div class="searchBarDiv">
+      
+    <input class="searchBar" type="text" placeholder="Type to search..." [(ngModel)]="searchKey"  (keyup)="searchUsers()" >
+    <!--
+    <button class="btn btn-success btn-lg " (click)="searchUsers()">Search</button>
+    -->
+  </div>
+    <!-- User List Table -->
+    <div>
+      <table class="table table-secondary table-striped mt-4">     
+         <thead>
+          <tr>
+            <th scope="col">NAME</th>
+            <th scope="col">PHONE</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">AGE</th>
+            <th scope="col">ADDRESS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredData.length > 0 ? filteredData : data">
+            <td>{{ item.name }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.address }}</td>
+          </tr>
+          <tr *ngIf="!filteredData.length && showSearchResults">
+            <td colspan="4" class="text-center">No matching users found.</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+

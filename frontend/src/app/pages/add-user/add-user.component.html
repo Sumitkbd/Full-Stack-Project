@@ -1,0 +1,56 @@
+<div class="container-sm">
+  <div id="c1" >
+    <h2 style="color: white;">User Registration</h2>
+    <p style="color: white;">Add User Information</p>
+  </div>
+
+  <form [formGroup]="userForm" (ngSubmit)="addUser()" novalidate>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" aria-describedby="name" name="name"
+        placeholder="Enter Your Name" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone No.</label>
+      <input type="number" class="form-control" id="phone" aria-describedby="phone" name="phone"
+        placeholder="Phone Number" formControlName="phone">
+      <div *ngIf="userForm.controls['phone'].errors && userForm.controls['phone'].errors['required']"
+        class="text-danger">
+        <div *ngIf="userForm.controls['phone'].errors['required']">Phone Number is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="email" name="email" placeholder="Email"
+        formControlName="email">
+      <div *ngIf="userForm.controls['email'].errors && userForm.controls['email'].errors['required']"
+        class="text-danger">
+        <div *ngIf="userForm.controls['email'].errors['required']">Email is required</div>
+      </div>
+      <div *ngIf="userForm.controls['email'].errors && userForm.controls['email'].errors['email']" class="text-danger">
+        <div *ngIf="userForm.controls['email'].errors['email']">Invalid email format</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" id="age" aria-describedby="age" name="age" placeholder="Enter Your Age"
+        formControlName="age">
+    </div>
+    <div>
+      <label for="address">Address</label>
+      <input type="text" class="form-control" id="address" aria-describedby="address" name="address"
+        placeholder="Enter Your Address" formControlName="address">
+    </div>
+
+<div class="buttons">
+    <button type="submit" class="btn btn-primary mr-2" (click)="displayMessage()"
+      [disabled]="userForm.invalid">SAVE <i class="fa fa-save"></i></button>
+    <button type="button" class="btn btn-primary" (click)="clearForm()">Reset</button>
+  </div> 
+    <div>
+      <h4><span class="badge badge-success">{{ message }}</span></h4>
+    </div>
+
+  </form>
+</div>
